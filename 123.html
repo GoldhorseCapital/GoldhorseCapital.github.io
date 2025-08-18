@@ -8,9 +8,10 @@
             stroke: black;
             stroke-width: 2;
         }
-        .tick {
-            stroke: black;
+        .grid {
+            stroke: lightgray;
             stroke-width: 1;
+            stroke-dasharray: 5,5;
         }
         .price-line {
             stroke: blue;
@@ -20,24 +21,14 @@
         .initial-point {
             fill: green;
         }
-        .peak-point {
+        .strike-point {
+            fill: orange;
+        }
+        .ki-point {
             fill: red;
         }
-        .final-point {
-            fill: purple;
-        }
-        .strike-line {
-            stroke: orange;
-            stroke-width: 1;
-            stroke-dasharray: 5,5;
-        }
-        .ki-line {
-            stroke: red;
-            stroke-width: 1;
-            stroke-dasharray: 5,5;
-        }
         .label {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             font-size: 12px;
         }
     </style>
@@ -46,57 +37,57 @@
     <svg width="600" height="400" viewBox="0 0 600 400">
         <!-- Y-axis -->
         <line x1="50" y1="350" x2="50" y2="50" class="axis" />
-        <!-- Y-axis ticks and labels -->
-        <line x1="45" y1="350" x2="50" y2="350" class="tick" />
-        <text x="30" y="355" class="label">0%</text>
-        
-        <line x1="45" y1="300" x2="50" y2="300" class="tick" />
-        <text x="30" y="305" class="label">50%</text>
-        
-        <line x1="45" y1="250" x2="50" y2="250" class="tick" />
-        <text x="30" y="255" class="label">100%</text>
-        
-        <line x1="45" y1="200" x2="50" y2="200" class="tick" />
-        <text x="30" y="205" class="label">150%</text>
-        
         <!-- X-axis -->
         <line x1="50" y1="350" x2="550" y2="350" class="axis" />
-        <!-- X-axis ticks and labels -->
-        <line x1="150" y1="350" x2="150" y2="355" class="tick" />
-        <text x="145" y="370" class="label">3m</text>
-        
-        <line x1="550" y1="350" x2="550" y2="355" class="tick" />
-        <text x="545" y="370" class="label">n</text>
-        
-        <!-- Strike Price Line (80%) -->
-        <line x1="50" y1="270" x2="550" y2="270" class="strike-line" />
-        <text x="555" y="273" class="label">80%</text>
-        
-        <!-- KI Level Line (50%) -->
-        <line x1="50" y1="300" x2="550" y2="300" class="ki-line" />
-        <text x="555" y="303" class="label">50%</text>
-        
-        <!-- Price Path -->
-        <path d="M 50 250 
-                 C 100 210, 150 170, 150 170
-                 C 200 170, 250 190, 300 210
-                 C 350 230, 400 250, 450 270
-                 C 500 290, 550 275, 550 275" class="price-line" />
-        
-        <!-- Initial Point -->
+
+        <!-- Y-axis labels -->
+        <text x="30" y="350" class="label">0%</text>
+        <text x="30" y="300" class="label">50%</text>
+        <text x="30" y="250" class="label">100%</text>
+        <text x="30" y="200" class="label">120%</text>
+        <text x="30" y="150" class="label">150%</text>
+
+        <!-- X-axis labels -->
+        <text x="50" y="370" class="label">0</text>
+        <text x="150" y="370" class="label">1</text>
+        <text x="250" y="370" class="label">2</text>
+        <text x="350" y="370" class="label">3</text>
+        <text x="450" y="370" class="label">4</text>
+        <text x="550" y="370" class="label">5</text>
+
+        <!-- Horizontal grid lines -->
+        <line x1="50" y1="300" x2="550" y2="300" class="grid" />
+        <line x1="50" y1="250" x2="550" y2="250" class="grid" />
+        <line x1="50" y1="200" x2="550" y2="200" class="grid" />
+        <line x1="50" y1="150" x2="550" y2="150" class="grid" />
+
+        <!-- Vertical grid lines -->
+        <line x1="150" y1="50" x2="150" y2="350" class="grid" />
+        <line x1="250" y1="50" x2="250" y2="350" class="grid" />
+        <line x1="350" y1="50" x2="350" y2="350" class="grid" />
+        <line x1="450" y1="50" x2="450" y2="350" class="grid" />
+
+        <!-- Price level line -->
+        <path d="M50,250 
+                C150,250 250,150 350,150
+                C450,150 550,275 550,275" 
+              class="price-line" />
+
+        <!-- Initial price point -->
         <circle cx="50" cy="250" r="5" class="initial-point" />
         <text x="60" y="255" class="label">Initial (100%)</text>
-        
-        <!-- Peak Point -->
-        <circle cx="150" cy="170" r="5" class="peak-point" />
-        <text x="160" y="175" class="label">Peak (120%)</text>
-        
-        <!-- Final Point -->
-        <circle cx="550" cy="275" r="5" class="final-point" />
+
+        <!-- Strike price line -->
+        <line x1="50" y1="290" x2="550" y2="290" stroke="orange" stroke-width="1" stroke-dasharray="5,5" />
+        <text x="550" y="285" class="label" fill="orange">Strike (80%)</text>
+
+        <!-- KI level line -->
+        <line x1="50" y1="325" x2="550" y2="325" stroke="red" stroke-width="1" stroke-dasharray="5,5" />
+        <text x="550" y="320" class="label" fill="red">KI (50%)</text>
+
+        <!-- Final price point -->
+        <circle cx="550" cy="275" r="5" fill="purple" />
         <text x="560" y="280" class="label">Final (75%)</text>
-        
-        <!-- Graph Title -->
-        <text x="300" y="30" class="label" text-anchor="middle">Price Level Over Time</text>
     </svg>
 </body>
 </html>
