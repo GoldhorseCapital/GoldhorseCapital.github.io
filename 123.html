@@ -1,42 +1,121 @@
-根据提供的JSON数据，我将绘制一张函数图，其中x轴代表时间（0到6个月），y轴代表价格水平（0%到150%）。以下是关键参数：
+Here's an HTML file that visualizes the price level over time as described:
 
-1. **Tenor (期限)**: 6个月（x轴范围：0到6m）
-2. **Strike Price Level (行权价水平)**: 68.66%（y轴标记）
-3. **Initial Price Level (初始价格水平)**: 100%（起点）
-4. **Knock Out Price Level (敲出价格水平)**: 100%（最高点）
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Price Level Over Time</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 800px;
+            height: 500px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="priceChart"></canvas>
+    </div>
 
-### 函数图描述：
-- **起点**: (0m, 100%) - 初始价格水平
-- **上升阶段**: 从0m到3m，价格从100%上升到超过100%（假设峰值在3m时为120%）
-- **回落阶段**: 从3m到6m，价格从120%匀速回落到68.66%
-- **终点**: (6m, 68.66%) - 行权价水平
+    <script>
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        
+        // Data for the chart
+        const n = 6; // 6 months
+        const months = Array.from({length: n}, (_, i) => `Month ${i+1}`);
+        
+        // Price data - rises to 120% in 3 months, then falls to 75% by month 6
+        const prices = [];
+        for (let i = 0; i < n; i++) {
+            if (i <= 2) {
+                // Linear rise from 100% to 120% over first 3 months
+                prices.push(100 + (20/3) * i);
+            } else {
+                // Linear fall from 120% to 75% over next 3 months
+                prices.push(120 - (45/3) * (i - 2));
+            }
+        }
 
-### 图表说明：
-- **x轴**: 时间（0到6个月）
-- **y轴**: 价格水平（0%到150%）
-- **关键点**:
-  - (0m, 100%)
-  - (3m, 120%)
-  - (6m, 68.66%)
-- **线条趋势**: 先上升后下降，最终回到行权价水平。
-
-### 图表预览（文字描述）：
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Price Level',
+                    data: prices,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1,
+                    fill: false
+                }, {
+                    label: 'Initial Price (100%)',
+                    data: Array(n).fill(100),
+                    borderColor: 'rgba(255, 99, 132, 0.5)',
+                    borderDash: [5, 5],
+                    borderWidth: 1,
+                    fill: false
+                }, {
+                    label: 'Strike Price (80%)',
+                    data: Array(n).fill(80),
+                    borderColor: 'rgba(54, 162, 235, 0.5)',
+                    borderDash: [5, 5],
+                    borderWidth: 1,
+                    fill: false
+                }, {
+                    label: 'KI Level (50%)',
+                    data: Array(n).fill(50),
+                    borderColor: 'rgba(255, 159, 64, 0.5)',
+                    borderDash: [5, 5],
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price Level (%)'
+                        },
+                        min: 0,
+                        max: 150,
+                        ticks: {
+                            stepSize: 10
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (Months)'
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y.toFixed(2)}%`;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
 ```
-y (Price Level %)
-150| 
-   |       /\
-   |      /  \
-100|-----/----\----
-   |    /      \
- 50|   /        \
-   |  /          \
-  0|_______________
-    0  1  2  3  4  5  6  x (Months)
-```
 
-### 注意事项：
-1. 峰值高度（120%）是假设的，实际峰值可根据需要调整。
-2. 线条的上升和下降速率是匀速的。
-3. 终点严格落在(6m, 68.66%)。
+This HTML creates a line chart showing:
+1. The price level starting at 100%, rising to 120% over the first 3 months, then falling to 75% by month 6
+2. Horizontal reference lines for:
+   - Initial price (100%, red dashed line)
+   - Strike price (80%, blue dashed line)
+   - Knock-in level (50%, orange dashed line)
 
-如果需要更精确的图表或数学表达式，可以提供进一步的细节！
+The y-axis ranges from 0% to 150% as requested, and the x-axis shows the 6 months. You can save this code as an HTML file and open it in any modern web browser to see the visualization.
