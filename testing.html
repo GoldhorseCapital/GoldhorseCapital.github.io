@@ -1,0 +1,453 @@
+Here's the detailed product specification for the Fixed Coupon Note (FCN) based on the provided JSON, including graphical scenario illustrations in HTML format for GitHub Pages hosting:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barclays Fixed Coupon Note (FCN) - XS3092348559</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .spec-table th, .spec-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .spec-table th {
+            background-color: #f2f2f2;
+        }
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin: 30px 0;
+        }
+        .scenario {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fixed Coupon Note (FCN) Product Specification</h1>
+    
+    <h2>Basic Information</h2>
+    <table class="spec-table">
+        <tr>
+            <th>Issuer</th>
+            <td>Barclays</td>
+        </tr>
+        <tr>
+            <th>ISIN</th>
+            <td>XS3092348559</td>
+        </tr>
+        <tr>
+            <th>Currency</th>
+            <td>USD (US Dollar)</td>
+        </tr>
+        <tr>
+            <th>Total Issue Size</th>
+            <td>USD 400,000</td>
+        </tr>
+        <tr>
+            <th>Minimum Investment</th>
+            <td>USD 50,000</td>
+        </tr>
+    </table>
+
+    <h2>Key Terms</h2>
+    <table class="spec-table">
+        <tr>
+            <th>Tenor</th>
+            <td>12 months (from issue date to maturity)</td>
+        </tr>
+        <tr>
+            <th>Trade Date</th>
+            <td>August 14, 2025 (agreement date)</td>
+        </tr>
+        <tr>
+            <th>Issue Date</th>
+            <td>August 21, 2025 (start of investment)</td>
+        </tr>
+        <tr>
+            <th>Final Valuation Date</th>
+            <td>August 21, 2026 (maturity date)</td>
+        </tr>
+    </table>
+
+    <h2>Underlying Stocks</h2>
+    <p>The note's performance is linked to the worst-performing of these two stocks:</p>
+    <table class="spec-table">
+        <tr>
+            <th>Stock</th>
+            <th>Code</th>
+            <th>Initial Price</th>
+            <th>Currency</th>
+        </tr>
+        <tr>
+            <td>UnitedHealth Group</td>
+            <td>UNH UN Equity</td>
+            <td>USD 271.00</td>
+            <td>USD</td>
+        </tr>
+        <tr>
+            <td>Robinhood Markets</td>
+            <td>HOOD UW Equity</td>
+            <td>USD 107.65</td>
+            <td>USD</td>
+        </tr>
+    </table>
+
+    <h2>Coupon Payments</h2>
+    <table class="spec-table">
+        <tr>
+            <th>Annual Interest Rate</th>
+            <td>12.00%</td>
+        </tr>
+        <tr>
+            <th>Monthly Coupon Rate</th>
+            <td>1.0000% (paid in USD)</td>
+        </tr>
+        <tr>
+            <th>Coupon Payment Dates</th>
+            <td>
+                <ul>
+                    <li>September 24, 2025</li>
+                    <li>October 23, 2025</li>
+                    <li>November 25, 2025</li>
+                    <li>December 24, 2025</li>
+                    <li>January 23, 2026</li>
+                    <li>February 25, 2026</li>
+                    <li>March 25, 2026</li>
+                    <li>April 23, 2026</li>
+                    <li>May 26, 2026</li>
+                    <li>June 24, 2026</li>
+                    <li>July 23, 2026</li>
+                    <li>August 25, 2026 (final payment)</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p><strong>Example:</strong> For USD 50,000 invested, each monthly coupon = USD 500 (1.0000% × 50,000).</p>
+
+    <h2>Knock-Out Feature (Early Termination)</h2>
+    <table class="spec-table">
+        <tr>
+            <th>Knock-Out Price Level</th>
+            <td>100% of initial stock prices</td>
+        </tr>
+        <tr>
+            <th>Observation</th>
+            <td>Daily (checks if both stocks close at or above 100% of their initial prices)</td>
+        </tr>
+        <tr>
+            <th>Memory Effect</th>
+            <td>If one stock hits 100%, the note "remembers" and can knock out when the other stock later hits 100%</td>
+        </tr>
+        <tr>
+            <th>Outcome</th>
+            <td>If triggered, the note terminates early, and you receive:<br>
+                Principal (USD 50,000) + all accrued coupons up to the knock-out date</td>
+        </tr>
+    </table>
+
+    <h2>Maturity Payout Conditions</h2>
+    <p><strong>If NO Knock-Out Occurs:</strong></p>
+    <p>On August 21, 2026, the worst-performing stock's final price is compared to:</p>
+    <table class="spec-table">
+        <tr>
+            <th>Strike Price Level</th>
+            <td>58.68% of initial price</td>
+        </tr>
+    </table>
+    <p><strong>Scenario 1:</strong> Worst stock ≥ 58.68% → Receive full principal (USD 50,000) + final coupon</p>
+    <p><strong>Scenario 2:</strong> Worst stock < 58.68% → Receive shares of the worst-performing stock (number of shares = USD 50,000 ÷ final stock price)</p>
+
+    <h2>Knock-In Risk</h2>
+    <table class="spec-table">
+        <tr>
+            <th>Knock-In Price Level</th>
+            <td>N/A (no knock-in risk)</td>
+        </tr>
+        <tr>
+            <th>Knock-In Type</th>
+            <td>N/A (no chance of forced share delivery due to mid-term price drops)</td>
+        </tr>
+    </table>
+
+    <h2>Key Risks</h2>
+    <ul>
+        <li><strong>Market Risk:</strong> If both stocks perform poorly (worst stock < 58.68% at maturity), you receive shares worth less than your principal</li>
+        <li><strong>Early Termination Risk:</strong> Knock-out could limit total interest earned</li>
+        <li><strong>Issuer Risk:</strong> Barclays' creditworthiness impacts repayment</li>
+    </ul>
+
+    <h2>Example Scenarios with Graphical Illustrations</h2>
+
+    <div class="scenario">
+        <h3>Scenario 1: Knock-Out in March 2026</h3>
+        <p>UNH hits USD 271.00 (100%) on February 15, HOOD hits USD 107.65 (100%) on March 10 → Note terminates March 23.</p>
+        <p><strong>Payout:</strong> USD 50,000 + 7 coupons (USD 3,500).</p>
+        <div class="chart-container">
+            <canvas id="scenario1"></canvas>
+        </div>
+    </div>
+
+    <div class="scenario">
+        <h3>Scenario 2: Maturity with Full Principal Protection</h3>
+        <p>Both stocks remain above 58.68% of initial price (UNH ≥ USD 159.02, HOOD ≥ USD 63.17) at maturity.</p>
+        <p><strong>Payout:</strong> USD 50,000 + 12 coupons (USD 6,000).</p>
+        <div class="chart-container">
+            <canvas id="scenario2"></canvas>
+        </div>
+    </div>
+
+    <div class="scenario">
+        <h3>Scenario 3: Maturity with Share Delivery</h3>
+        <p>HOOD drops to USD 50 (46.44% of initial) by August 21, 2026 → Below 58.68% strike.</p>
+        <p><strong>Payout:</strong> HOOD shares worth USD 50,000 (1,000 shares at USD 50).</p>
+        <div class="chart-container">
+            <canvas id="scenario3"></canvas>
+        </div>
+    </div>
+
+    <h2>Additional Notes</h2>
+    <ul>
+        <li><strong>Valuation Dates:</strong> Monthly (21st-23rd) to monitor stock prices</li>
+        <li><strong>No Knock-In:</strong> Eliminates the risk of mid-term price drops triggering share delivery</li>
+    </ul>
+    <p>This FCN offers regular income (12% annualized) with principal protection unless both stocks fall significantly (below 58.68%) by maturity. Early termination is possible if both stocks recover to initial levels.</p>
+
+    <script>
+        // Scenario 1: Knock-Out in March 2026
+        const ctx1 = document.getElementById('scenario1').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [
+                    {
+                        label: 'UNH Price Level',
+                        data: [100, 102, 105, 108, 110, 108, 105, 100, null, null, null, null, null],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'HOOD Price Level',
+                        data: [100, 98, 95, 92, 90, 92, 95, 100, null, null, null, null, null],
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Knock-Out Level',
+                        data: [100, 100, 100, 100, 100, 100, 100, 100, null, null, null, null, null],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderDash: [5, 5],
+                        borderWidth: 1,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Price Level (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (Months)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Knock-Out Scenario: Both stocks reach 100% by March',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 100,
+                                yMax: 100,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1,
+                                borderDash: [5, 5]
+                            },
+                            label1: {
+                                type: 'label',
+                                content: 'Knock-Out Triggered',
+                                xValue: 'Mar',
+                                yValue: 105,
+                                backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Scenario 2: Maturity with Full Principal Protection
+        const ctx2 = document.getElementById('scenario2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [
+                    {
+                        label: 'Worst Performing Stock',
+                        data: [100, 98, 95, 92, 90, 88, 85, 83, 80, 78, 75, 72, 70],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Strike Price Level',
+                        data: [58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderDash: [5, 5],
+                        borderWidth: 1,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Price Level (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (Months)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Maturity Scenario: Worst stock remains above 58.68%',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 58.68,
+                                yMax: 58.68,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1,
+                                borderDash: [5, 5]
+                            },
+                            label1: {
+                                type: 'label',
+                                content: 'Principal Protected',
+                                xValue: 'Aug',
+                                yValue: 65,
+                                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Scenario 3: Maturity with Share Delivery
+        const ctx3 = document.getElementById('scenario3').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [
+                    {
+                        label: 'Worst Performing Stock (HOOD)',
+                        data: [100, 90, 80, 70, 65, 60, 55, 50, 48, 47, 46, 45, 46.44],
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Strike Price Level',
+                        data: [58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68, 58.68],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderDash: [5, 5],
+                        borderWidth: 1,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Price Level (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (Months)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Maturity Scenario: Worst stock falls below 58.68%',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 58.68,
+                                yMax: 58.68,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1,
+                                borderDash: [5, 5]
+                            },
+                            label1: {
+                                type: 'label',
+                                content: 'Shares Delivered',
+                                xValue: 'Aug',
+                                yValue: 40,
+                                backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                                color: '#fff'
+                            }
+                        }
