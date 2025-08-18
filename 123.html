@@ -18,14 +18,10 @@
             stroke-width: 2;
             fill: none;
         }
-        .initial-point {
-            fill: green;
-        }
-        .strike-point {
-            fill: orange;
-        }
-        .ki-point {
-            fill: red;
+        .level-line {
+            stroke: red;
+            stroke-width: 1;
+            stroke-dasharray: 5,5;
         }
         .label {
             font-family: Arial, sans-serif;
@@ -41,11 +37,15 @@
         <line x1="50" y1="350" x2="550" y2="350" class="axis" />
 
         <!-- Y-axis labels -->
+        <text x="30" y="50" class="label">150%</text>
+        <text x="30" y="150" class="label">100%</text>
+        <text x="30" y="250" class="label">50%</text>
         <text x="30" y="350" class="label">0%</text>
-        <text x="30" y="300" class="label">50%</text>
-        <text x="30" y="250" class="label">100%</text>
-        <text x="30" y="200" class="label">120%</text>
-        <text x="30" y="150" class="label">150%</text>
+
+        <!-- Y-axis grid lines -->
+        <line x1="50" y1="50" x2="550" y2="50" class="grid" />
+        <line x1="50" y1="150" x2="550" y2="150" class="grid" />
+        <line x1="50" y1="250" x2="550" y2="250" class="grid" />
 
         <!-- X-axis labels -->
         <text x="50" y="370" class="label">0</text>
@@ -55,39 +55,30 @@
         <text x="450" y="370" class="label">4</text>
         <text x="550" y="370" class="label">5</text>
 
-        <!-- Horizontal grid lines -->
-        <line x1="50" y1="300" x2="550" y2="300" class="grid" />
-        <line x1="50" y1="250" x2="550" y2="250" class="grid" />
-        <line x1="50" y1="200" x2="550" y2="200" class="grid" />
-        <line x1="50" y1="150" x2="550" y2="150" class="grid" />
+        <!-- Level lines -->
+        <line x1="50" y1="150" x2="550" y2="150" class="level-line" />
+        <text x="560" y="155" class="label">Initial (100%)</text>
+        
+        <line x1="50" y1="190" x2="550" y2="190" class="level-line" />
+        <text x="560" y="195" class="label">Strike (80%)</text>
+        
+        <line x1="50" y1="250" x2="550" y2="250" class="level-line" />
+        <text x="560" y="255" class="label">KI (50%)</text>
 
-        <!-- Vertical grid lines -->
-        <line x1="150" y1="50" x2="150" y2="350" class="grid" />
-        <line x1="250" y1="50" x2="250" y2="350" class="grid" />
-        <line x1="350" y1="50" x2="350" y2="350" class="grid" />
-        <line x1="450" y1="50" x2="450" y2="350" class="grid" />
+        <!-- Price line -->
+        <path d="M50,150 L150,110 L250,70 L350,110 L450,170 L550,190" class="price-line" />
 
-        <!-- Price level line -->
-        <path d="M50,250 
-                C150,250 250,150 350,150
-                C450,150 550,275 550,275" 
-              class="price-line" />
+        <!-- Points -->
+        <circle cx="50" cy="150" r="3" fill="blue" />
+        <circle cx="150" cy="110" r="3" fill="blue" />
+        <circle cx="250" cy="70" r="3" fill="blue" />
+        <circle cx="350" cy="110" r="3" fill="blue" />
+        <circle cx="450" cy="170" r="3" fill="blue" />
+        <circle cx="550" cy="190" r="3" fill="blue" />
 
-        <!-- Initial price point -->
-        <circle cx="50" cy="250" r="5" class="initial-point" />
-        <text x="60" y="255" class="label">Initial (100%)</text>
-
-        <!-- Strike price line -->
-        <line x1="50" y1="290" x2="550" y2="290" stroke="orange" stroke-width="1" stroke-dasharray="5,5" />
-        <text x="550" y="285" class="label" fill="orange">Strike (80%)</text>
-
-        <!-- KI level line -->
-        <line x1="50" y1="325" x2="550" y2="325" stroke="red" stroke-width="1" stroke-dasharray="5,5" />
-        <text x="550" y="320" class="label" fill="red">KI (50%)</text>
-
-        <!-- Final price point -->
-        <circle cx="550" cy="275" r="5" fill="purple" />
-        <text x="560" y="280" class="label">Final (75%)</text>
+        <!-- Axis titles -->
+        <text x="300" y="390" class="label">Time (months)</text>
+        <text x="20" y="200" class="label" transform="rotate(-90, 20, 200)">Price Level</text>
     </svg>
 </body>
 </html>
