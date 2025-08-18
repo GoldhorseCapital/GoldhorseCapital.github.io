@@ -1,18 +1,18 @@
-Here's an HTML file that uses SVG to draw the graph you described. The graph shows the price level starting at 100%, rising to 120% over 3 months, then falling to 75% by the end of the period (6 months in this example).
+Here's an HTML file that uses SVG to draw the graph you described:
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Price Level Over Time</title>
+    <title>Price Level Graph</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
         .graph-container {
-            width: 600px;
-            height: 400px;
+            width: 800px;
+            height: 500px;
             border: 1px solid #ccc;
             padding: 20px;
         }
@@ -20,110 +20,119 @@ Here's an HTML file that uses SVG to draw the graph you described. The graph sho
             stroke: #000;
             stroke-width: 2;
         }
-        .grid-line {
-            stroke: #ddd;
+        .tick {
+            stroke: #000;
             stroke-width: 1;
+        }
+        .tick-text {
+            font-size: 12px;
         }
         .price-line {
             stroke: #0066cc;
-            stroke-width: 3;
+            stroke-width: 2;
             fill: none;
         }
-        .marker {
-            fill: #0066cc;
-        }
-        .label {
-            font-size: 12px;
-        }
-        .key-level {
+        .initial-price {
+            stroke: #00aa00;
+            stroke-width: 1;
             stroke-dasharray: 5,5;
         }
-        .key-level-100 {
-            stroke: #009900;
-        }
-        .key-level-80 {
+        .strike-price {
             stroke: #ff6600;
+            stroke-width: 1;
+            stroke-dasharray: 5,5;
         }
-        .key-level-50 {
+        .ki-price {
             stroke: #cc0000;
+            stroke-width: 1;
+            stroke-dasharray: 5,5;
         }
         .legend {
             font-size: 12px;
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="graph-container">
-        <svg width="560" height="360" viewBox="0 0 560 360">
+        <svg width="760" height="460" viewBox="0 0 760 460">
             <!-- Y-axis -->
-            <line x1="50" y1="20" x2="50" y2="320" class="axis" />
+            <line x1="60" y1="400" x2="60" y2="40" class="axis" />
+            <!-- Y-axis ticks and labels -->
+            <line x1="55" y1="400" x2="60" y2="400" class="tick" />
+            <text x="40" y="405" class="tick-text">0%</text>
+            
+            <line x1="55" y1="340" x2="60" y2="340" class="tick" />
+            <text x="40" y="345" class="tick-text">50%</text>
+            
+            <line x1="55" y1="280" x2="60" y2="280" class="tick" />
+            <text x="40" y="285" class="tick-text">100%</text>
+            
+            <line x1="55" y1="220" x2="60" y2="220" class="tick" />
+            <text x="40" y="225" class="tick-text">150%</text>
+            
             <!-- X-axis -->
-            <line x1="50" y1="320" x2="530" y2="320" class="axis" />
+            <line x1="60" y1="400" x2="700" y2="400" class="axis" />
             
-            <!-- Y-axis labels and grid lines -->
-            <text x="30" y="20" class="label" text-anchor="end">150%</text>
-            <line x1="50" y1="20" x2="530" y2="20" class="grid-line" />
+            <!-- X-axis ticks and labels (assuming 6 months) -->
+            <line x1="160" y1="400" x2="160" y2="405" class="tick" />
+            <text x="155" y="420" class="tick-text">1</text>
             
-            <text x="30" y="120" class="label" text-anchor="end">100%</text>
-            <line x1="50" y1="120" x2="530" y2="120" class="grid-line key-level-100 key-level" />
+            <line x1="260" y1="400" x2="260" y2="405" class="tick" />
+            <text x="255" y="420" class="tick-text">2</text>
             
-            <text x="30" y="220" class="label" text-anchor="end">50%</text>
-            <line x1="50" y1="220" x2="530" y2="220" class="grid-line key-level-50 key-level" />
+            <line x1="360" y1="400" x2="360" y2="405" class="tick" />
+            <text x="355" y="420" class="tick-text">3</text>
             
-            <!-- X-axis labels (months) -->
-            <text x="50" y="340" class="label" text-anchor="middle">0</text>
-            <text x="150" y="340" class="label" text-anchor="middle">1</text>
-            <text x="250" y="340" class="label" text-anchor="middle">2</text>
-            <text x="350" y="340" class="label" text-anchor="middle">3</text>
-            <text x="450" y="340" class="label" text-anchor="middle">4</text>
-            <text x="530" y="340" class="label" text-anchor="middle">6</text>
+            <line x1="460" y1="400" x2="460" y2="405" class="tick" />
+            <text x="455" y="420" class="tick-text">4</text>
             
-            <!-- Key level labels -->
-            <text x="540" y="120" class="label" text-anchor="end">Initial (100%)</text>
-            <text x="540" y="168" class="label" text-anchor="end">Strike (80%)</text>
-            <line x1="50" y1="168" x2="530" y2="168" class="grid-line key-level-80 key-level" />
-            <text x="540" y="220" class="label" text-anchor="end">KI (50%)</text>
+            <line x1="560" y1="400" x2="560" y2="405" class="tick" />
+            <text x="555" y="420" class="tick-text">5</text>
+            
+            <line x1="660" y1="400" x2="660" y2="405" class="tick" />
+            <text x="655" y="420" class="tick-text">6</text>
+            
+            <!-- Reference lines -->
+            <line x1="60" y1="280" x2="700" y2="280" class="initial-price" />
+            <text x="710" y="285" class="tick-text">Initial (100%)</text>
+            
+            <line x1="60" y1="320" x2="700" y2="320" class="strike-price" />
+            <text x="710" y="325" class="tick-text">Strike (80%)</text>
+            
+            <line x1="60" y1="360" x2="700" y2="360" class="ki-price" />
+            <text x="710" y="365" class="tick-text">KI (50%)</text>
             
             <!-- Price path -->
-            <polyline points="50,120 150,80 250,40 350,40 450,160 530,180" class="price-line" />
+            <path d="M60,280 
+                     C160,280 260,160 360,160
+                     C460,160 560,250 660,250" 
+                  class="price-line" />
             
-            <!-- Points at observation dates -->
-            <circle cx="50" cy="120" r="4" class="marker" />
-            <circle cx="150" cy="80" r="4" class="marker" />
-            <circle cx="250" cy="40" r="4" class="marker" />
-            <circle cx="350" cy="40" r="4" class="marker" />
-            <circle cx="450" cy="160" r="4" class="marker" />
-            <circle cx="530" cy="180" r="4" class="marker" />
+            <!-- Start and end points -->
+            <circle cx="60" cy="280" r="4" fill="#0066cc" />
+            <circle cx="660" cy="250" r="4" fill="#0066cc" />
             
-            <!-- Axis titles -->
-            <text x="290" y="360" class="label" text-anchor="middle">Time (months)</text>
-            <text x="10" y="170" class="label" text-anchor="middle" transform="rotate(-90,10,170) translate(0,-10)">Price Level (%)</text>
+            <!-- Labels -->
+            <text x="60" y="30" class="tick-text" font-weight="bold">Price Level Graph</text>
+            <text x="380" y="440" class="tick-text">Time (months)</text>
+            <text x="20" y="220" class="tick-text" transform="rotate(-90,20,220)">Price Level (%)</text>
         </svg>
-        
-        <div class="legend">
-            <strong>Key Levels:</strong>
-            <span style="color:#009900;">Initial Price (100%)</span> | 
-            <span style="color:#ff6600;">Strike Price (80%)</span> | 
-            <span style="color:#cc0000;">Knock-In Level (50%)</span>
-        </div>
     </div>
 </body>
 </html>
 ```
 
-This HTML file creates an SVG graph with:
+This HTML file creates an SVG graph that shows:
 
-1. A y-axis showing price levels from 50% to 150%
-2. An x-axis showing time in months (0 to 6)
-3. A price path that:
+1. Y-axis (price level) from 0% to 150%
+2. X-axis (time) for 6 months
+3. Three horizontal reference lines:
+   - Initial price at 100% (green dashed line)
+   - Strike price at 80% (orange dashed line)
+   - Knock-in price at 50% (red dashed line)
+4. A price path that:
    - Starts at 100%
-   - Rises to 120% over the first 3 months
+   - Rises to 120% by month 3
    - Then falls to 75% by month 6
-4. Key levels marked:
-   - Initial price (100%) in green
-   - Strike price (80%) in orange
-   - Knock-In level (50%) in red
-5. Observation points marked with blue dots
 
-You can save this as an HTML file and open it in any web browser to see the graph. The price path is represented by the blue line that first rises then falls.
+The graph uses SVG paths with cubic Bézier curves to create smooth transitions between the price points. You can adjust the values in the path's "d" attribute if you want to change the exact shape of the curve.
