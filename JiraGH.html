@@ -1,0 +1,207 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Coupon Note (FCN) Product Specification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #003366;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fixed Coupon Note (FCN) Product Specification</h1>
+    <h2>Issuer Information</h2>
+    <table>
+        <tr>
+            <th>Issuer</th>
+            <td>CITI</td>
+        </tr>
+        <tr>
+            <th>ISIN</th>
+            <td>XS3106604856</td>
+        </tr>
+        <tr>
+            <th>Currency</th>
+            <td>USD (United States Dollar)</td>
+        </tr>
+        <tr>
+            <th>Total Issue Size</th>
+            <td>USD 250,000</td>
+        </tr>
+        <tr>
+            <th>Minimum Investment (Denomination)</th>
+            <td>USD 250,000</td>
+        </tr>
+    </table>
+
+    <h2>Key Terms</h2>
+    <table>
+        <tr>
+            <th>Tenor</th>
+            <td>3 months</td>
+        </tr>
+        <tr>
+            <th>Trade Date</th>
+            <td>July 8, 2025</td>
+        </tr>
+        <tr>
+            <th>Issue Date</th>
+            <td>July 15, 2025</td>
+        </tr>
+        <tr>
+            <th>Final Valuation Date</th>
+            <td>October 15, 2025</td>
+        </tr>
+    </table>
+
+    <h2>Underlying Stocks</h2>
+    <p>The note’s performance is linked to the worst-performing of:</p>
+    <ul>
+        <li>TSLA UW Equity: Initial price = USD 297.00</li>
+    </ul>
+
+    <h2>Coupon Payments</h2>
+    <table>
+        <tr>
+            <th>Annual Interest Rate</th>
+            <td>16.11%</td>
+        </tr>
+        <tr>
+            <th>Periodic Coupon Rate</th>
+            <td>1.3425% (paid in USD)</td>
+        </tr>
+        <tr>
+            <th>Coupon Payment Dates</th>
+            <td>
+                <ul>
+                    <li>August 19, 2025</li>
+                    <li>September 17, 2025</li>
+                    <li>October 17, 2025</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p>Example: For USD 250,000 invested, each coupon = USD 3,356.25</p>
+
+    <h2>Knock-Out Feature (Early Termination)</h2>
+    <table>
+        <tr>
+            <th>Knock-Out Price Level</th>
+            <td>100% of initial prices</td>
+        </tr>
+        <tr>
+            <th>Observation</th>
+            <td>Period End</td>
+        </tr>
+        <tr>
+            <th>Memory Effect</th>
+            <td>Disabled</td>
+        </tr>
+        <tr>
+            <th>Outcome</th>
+            <td>If triggered, receive principal (USD 250,000) + accrued coupons.</td>
+        </tr>
+    </table>
+
+    <h2>Maturity Payout Conditions</h2>
+    <p>If no knock-out occurs:</p>
+    <ul>
+        <li>On October 15, 2025, the payout depends on whether a Knock-In event occurred:</li>
+        <li>No Knock-In Event: Receive full principal (USD 250,000) + final coupon, regardless of the worst-performing stock’s price.</li>
+        <li>Knock-In Event Occurred: Not applicable as Knock-In feature is not present.</li>
+    </ul>
+
+    <h2>Knock-In Risk</h2>
+    <p>No knock-in risk exists, ensuring principal is returned in cash.</p>
+
+    <h2>Key Risks</h2>
+    <ul>
+        <li>Market Risk: If the worst-performing stock is below the strike price at maturity, you may receive shares worth less than your principal.</li>
+        <li>Early Termination Risk: Knock-out may limit total interest earned.</li>
+        <li>Knock-In Risk: Not applicable.</li>
+        <li>Currency Risk: Exchange rate fluctuations may affect share value if delivered.</li>
+        <li>Issuer Risk: CITI’s creditworthiness impacts repayment.</li>
+    </ul>
+
+    <h2>Example Scenarios</h2>
+
+    <h3>1. Knock-Out in August 2025:</h3>
+    <p>Scenario: TSLA UW Equity hits 100% on August 15, 2025.</p>
+    <p>Payout: USD 250,000 + 1 coupon (USD 3,356.25).</p>
+    <pre>
+Price Level (%)
+120 |                                                                 
+110 |                                                                 
+100 |--- [TSLA UW Equity] ----* (Knock-Out at 100%)                  
+ 90 |     \                                                             
+ 80 |      \                                                         
+ 70 |       \                                                       
+ 60 |        \                                                       
+ 50 |         \                                                     
+ 40 |          \                                                   
+ 30 |           \                                                  
+ 20 |            \                                                 
+ 10 |             \                                                
+  0 |--------------\----------------------------------------------- 
+    0  1m  2m  3m (Time in Months)
+    | (Knock-Out Event)                                        
+    </pre>
+
+    <h3>2. Maturity with Full Principal:</h3>
+    <p>Scenario: No Knock-Out occurs and principal is returned in full as there is no Knock-In event.</p>
+    <p>Payout: USD 250,000 + 3 coupons (USD 10,068.75).</p>
+    <pre>
+Price Level (%)
+120 |                                                                 
+110 |                                                                 
+100 |--- [TSLA UW Equity] ----------------------------------------    
+ 90 |     \                                                             
+ 80 |      \                                                         
+ 70 |       \                                                       
+ 60 |        \                                                       
+ 50 |         \                                                     
+ 40 |          \                                                   
+ 30 |           \                                                  
+ 20 |            \                                                 
+ 10 |             \                                                
+  0 |--------------\----------------------------------------------- 
+    0  1m  2m  3m (Time in Months)
+    |                     | (Maturity)                                
+    </pre>
+
+    <h2>Additional Notes</h2>
+    <ul>
+        <li>Valuation Dates: Monthly on 15th</li>
+        <li>Knock-In: No knock-in risk; hence, principal is ensured to be returned in cash.</li>
+    </ul>
+
+    <p>This FCN offers regular income with principal protection as there is no Knock-In event. Early termination is possible if the underlying recovers to initial levels by the specified observation periods.</p>
+</body>
+</html>
+```
