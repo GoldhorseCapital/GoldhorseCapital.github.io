@@ -1,0 +1,189 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Coupon Note (FCN) Product Specification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .example {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Fixed Coupon Note (FCN) Product Specification</h1>
+
+<h2>Issuer Information</h2>
+<p><strong>Issuer:</strong> Barclays</p>
+<p><strong>ISIN:</strong> XS3078776609</p>
+<p><strong>Currency:</strong> USD</p>
+<p><strong>Total Issue Size:</strong> USD 460,000</p>
+<p><strong>Minimum Investment (Denomination):</strong> USD 46,000</p>
+
+<h2>Key Terms</h2>
+<table>
+    <tr>
+        <th>Tenor</th>
+        <td>6 months</td>
+    </tr>
+    <tr>
+        <th>Trade Date</th>
+        <td>July 31, 2025</td>
+    </tr>
+    <tr>
+        <th>Issue Date</th>
+        <td>August 7, 2025</td>
+    </tr>
+    <tr>
+        <th>Final Valuation Date</th>
+        <td>February 9, 2026</td>
+    </tr>
+</table>
+
+<h2>Underlying Stocks</h2>
+<p>The note’s performance is linked to the worst-performing of:</p>
+<ul>
+    <li><strong>SNAP UN Equity:</strong> Initial price = USD 9.48</li>
+    <li><strong>MRVL UW Equity:</strong> Initial price = USD 82.71</li>
+</ul>
+
+<h2>Coupon Payments</h2>
+<p><strong>Annual Interest Rate:</strong> 12.07%</p>
+<p><strong>Periodic Coupon Rate:</strong> 1.0059% (paid in USD)</p>
+<p><strong>Coupon Payment Dates:</strong></p>
+<ul>
+    <li>September 10, 2025</li>
+    <li>October 9, 2025</li>
+    <li>November 12, 2025</li>
+    <li>December 10, 2025</li>
+    <li>January 9, 2026</li>
+    <li>February 11, 2026</li>
+</ul>
+<p><em>Example: For USD 46,000 invested, each coupon = USD 462.71</em></p>
+
+<h2>Knock-Out Feature (Early Termination)</h2>
+<p><strong>Knock-Out Price Level:</strong> 88% of initial prices</p>
+<p><strong>Observation:</strong> Daily</p>
+<p><strong>Memory Effect:</strong> Enabled</p>
+<p><strong>Outcome:</strong> If triggered, receive principal (USD 46,000) + accrued coupons.</p>
+
+<h2>Maturity Payout Conditions</h2>
+<p><strong>If no knock-out occurs:</strong> On February 9, 2026, the payout depends on whether a Knock-In event occurred:</p>
+<ul>
+    <li><strong>No Knock-In Event:</strong> Receive full principal (USD 46,000) + final coupon, regardless of the worst-performing stock’s price.</li>
+    <li><strong>Knock-In Event Occurred:</strong>
+        <ul>
+            <li>If worst-performing stock ≥ 80% at maturity → Receive full principal + final coupon.</li>
+            <li>If worst-performing stock < 80% at maturity → Receive shares of the worst-performing stock (number of shares = USD 46,000 ÷ final stock price in USD).</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Knock-In Risk</h2>
+<p><strong>Knock-In Price Level:</strong> 55%</p>
+<p><strong>Knock-In Type:</strong> European</p>
+<p><strong>Note:</strong> For European Knock-In, a knock-in occurs only if the worst-performing stock is below the knock-in level on the final valuation date, implying it’s also below the strike price, leading to share delivery.</p>
+
+<h2>Key Risks</h2>
+<ul>
+    <li><strong>Market Risk:</strong> If a Knock-In event occurs and the worst-performing stock is below 80% at maturity, you may receive shares worth less than your principal.</li>
+    <li><strong>Early Termination Risk:</strong> Knock-out may limit total interest earned.</li>
+    <li><strong>Knock-In Risk:</strong> Knock-in occurs only at maturity if the worst-performing stock is below the knock-in level.</li>
+    <li><strong>Currency Risk:</strong> Exchange rate fluctuations may affect share value if delivered.</li>
+    <li><strong>Issuer Risk:</strong> Barclays’ creditworthiness impacts repayment.</li>
+</ul>
+
+<h2>Example Scenarios</h2>
+
+<div class="example">
+    <h3>1. Knock-Out in October 2025:</h3>
+    <p>- SNAP UN Equity hits 88% on August 20, 2025, and MRVL UW Equity hits 88% on September 15, 2025 → Note terminates on September 15, 2025.</p>
+    <p>- Payout: USD 46,000 + 1 coupon (USD 462.71).</p>
+    <pre>
+    Price Level (%)
+    120 |                                                                  
+    110 |                                                                  
+    100 |--- [SNAP UN] --------------*---------* (Knock-Out at 88%)                 
+     90 |     \    /      /                                                
+     80 |      \  /      /                                                 
+     70 |       \/      / ([Strike Level])                                
+     60 |              / ([Knock-In Level])                
+     50 |             /                                                  
+     40 |            /                                                   
+     30 |           /                                                    
+     20 |          /                                                     
+     10 |         /                                                      
+      0 |--------/----------------------------------------------------------
+         0  1m  2m  3m  4m  5m  6m (Time in Months)
+         |          | (Knock-Out Event)                                     
+    === [MRVL UW] (dips then recovers to 88% at 2m)
+    Knock-Out Level: 88% (dashed line at 88)
+    Knock-In Level: 55% (not triggered)
+    Strike Level: 80% (not triggered)
+    </pre>
+</div>
+
+<div class="example">
+    <h3>2. Maturity with Shares (Knock-In Event):</h3>
+    <p>- For European Knock-In: MRVL UW Equity is below 55% on February 9, 2026, also below 80% → Shares delivery.</p>
+    <p>- Payout: [Number] MRVL UW Equity shares (USD 46,000 ÷ final price).</p>
+    <pre>
+    Price Level (%)
+    120 |                                                                  
+    110 |                                                                  
+    100 |--- [SNAP UN] ----------------------------------------------        
+     90 |     \                                                           
+     80 |      \---------------------------------------------- (ends at 80%) 
+     70 |       \ ([Strike Level])                                        
+     60 |        \ ([Knock-In Level]) K (Knock-In Event)                  
+     50 |         \                                                      
+     40 |          \                                                     
+     30 |           \                                                    
+     20 |            \                                                   
+     10 |             \                                                  
+      0 |--------------\----------------------------------------------- 
+         0  1m  2m  3m  4m  5m  6m (Time in Months)
+         |                   | (Maturity)                                  
+    === [MRVL UW] (falls to 55% at 6m, ends below 80%)
+    Knock-Out Level: 88% (not triggered)
+    Knock-In Level: 55% (triggered)
+    Strike Level: 80% (triggered for MRVL UW)
+    </pre>
+</div>
+
+<h2>Additional Notes</h2>
+<ul>
+    <li><strong>Valuation Dates:</strong> Monthly on 8th or 9th</li>
+    <li><strong>Knock-In:</strong> For European, knock-in risk only if the worst-performing stock is below the knock-in level on the final valuation date.</li>
+</ul>
+
+<p>This FCN offers regular income with principal protection unless a Knock-In event occurs and the worst-performing stock is below the strike price at maturity. Early termination is possible if all underlyings recover to initial levels.</p>
+
+</body>
+</html>
+```
