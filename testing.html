@@ -3,110 +3,157 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fixed Coupon Note (FCN) Product Specification</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
             line-height: 1.6;
+            margin: 20px;
         }
-        h1, h2, h3 {
-            color: #2C3E50;
+        h1, h2 {
+            color: #333;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
         th, td {
-            border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
         th {
             background-color: #f2f2f2;
         }
-        .example {
-            background-color: #f9f9f9;
-            padding: 10px;
-            margin: 10px 0;
-        }
     </style>
 </head>
 <body>
+
     <h1>Fixed Coupon Note (FCN) Product Specification</h1>
-    
-    <h2>Issuer</h2>
-    <p>Barclays</p>
-    
-    <h2>ISIN</h2>
-    <p>XS3078776609</p>
-    
-    <h2>Currency</h2>
-    <p>USD (United States Dollar)</p>
-    
-    <h2>Total Issue Size</h2>
-    <p>USD 460,000</p>
-    
-    <h2>Minimum Investment (Denomination)</h2>
-    <p>USD 46,000</p>
-    
+
+    <h2>Issuer Information</h2>
+    <table>
+        <tr>
+            <th>Issuer</th>
+            <td>Barclays</td>
+        </tr>
+        <tr>
+            <th>ISIN</th>
+            <td>XS3078776609</td>
+        </tr>
+        <tr>
+            <th>Currency</th>
+            <td>USD</td>
+        </tr>
+        <tr>
+            <th>Total Issue Size</th>
+            <td>USD 460,000</td>
+        </tr>
+        <tr>
+            <th>Minimum Investment (Denomination)</th>
+            <td>USD 46,000</td>
+        </tr>
+    </table>
+
     <h2>Key Terms</h2>
-    <ul>
-        <li>Tenor: 6 months</li>
-        <li>Trade Date: July 31, 2025</li>
-        <li>Issue Date: August 7, 2025</li>
-        <li>Final Valuation Date: February 9, 2026</li>
-    </ul>
+    <table>
+        <tr>
+            <th>Tenor</th>
+            <td>6 months</td>
+        </tr>
+        <tr>
+            <th>Trade Date</th>
+            <td>July 31, 2025</td>
+        </tr>
+        <tr>
+            <th>Issue Date</th>
+            <td>August 7, 2025</td>
+        </tr>
+        <tr>
+            <th>Final Valuation Date</th>
+            <td>February 9, 2026</td>
+        </tr>
+    </table>
 
     <h2>Underlying Stocks</h2>
-    <p>The note’s performance is linked to the worst-performing of:</p>
     <ul>
         <li>SNAP UN Equity: Initial price = USD 9.48</li>
         <li>MRVL UW Equity: Initial price = USD 82.71</li>
     </ul>
 
     <h2>Coupon Payments</h2>
-    <ul>
-        <li>Annual Interest Rate: 12.07%</li>
-        <li>Periodic Coupon Rate: 1.0059% (paid in USD)</li>
-        <li>Coupon Payment Dates:
-            <ul>
-                <li>September 10, 2025</li>
-                <li>October 9, 2025</li>
-                <li>November 12, 2025</li>
-                <li>December 10, 2025</li>
-                <li>January 9, 2026</li>
-                <li>February 11, 2026</li>
-            </ul>
-        </li>
-    </ul>
-    <p>Example: For USD 46,000 invested, each coupon = USD 462.71</p>
+    <table>
+        <tr>
+            <th>Annual Interest Rate</th>
+            <td>12.07%</td>
+        </tr>
+        <tr>
+            <th>Periodic Coupon Rate</th>
+            <td>1.0059% (paid in USD)</td>
+        </tr>
+        <tr>
+            <th>Coupon Payment Dates</th>
+            <td>
+                <ul>
+                    <li>September 10, 2025</li>
+                    <li>October 9, 2025</li>
+                    <li>November 12, 2025</li>
+                    <li>December 10, 2025</li>
+                    <li>January 9, 2026</li>
+                    <li>February 11, 2026</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Example</th>
+            <td>For USD 46,000 invested, each coupon = USD 462.71</td>
+        </tr>
+    </table>
 
     <h2>Knock-Out Feature (Early Termination)</h2>
-    <ul>
-        <li>Knock-Out Price Level: 88% of initial prices</li>
-        <li>Observation: Daily</li>
-        <li>Memory Effect: Enabled if "True"</li>
-    </ul>
-    <p>Outcome: If triggered, receive principal (USD 46,000) + accrued coupons.</p>
+    <table>
+        <tr>
+            <th>Knock-Out Price Level</th>
+            <td>88.00% of initial prices</td>
+        </tr>
+        <tr>
+            <th>Observation</th>
+            <td>Daily</td>
+        </tr>
+        <tr>
+            <th>Memory Effect</th>
+            <td>Enabled (True)</td>
+        </tr>
+        <tr>
+            <th>Outcome</th>
+            <td>If triggered, receive principal (USD 46,000) + accrued coupons.</td>
+        </tr>
+    </table>
 
     <h2>Maturity Payout Conditions</h2>
     <p>If no knock-out occurs:</p>
-    <p>On February 9, 2026, the worst-performing stock’s price is compared to:</p>
     <ul>
+        <li>On February 9, 2026, the worst-performing stock’s price is compared to:</li>
         <li>Strike Price Level: 80.00%</li>
-    </ul>
-    <ul>
-        <li>Scenario 1: Worst stock ≥ 80.00% → Receive full principal + final coupon.</li>
-        <li>Scenario 2: Worst stock < 80.00% → Receive shares of the worst-performing stock (number of shares = USD 46,000 ÷ final stock price in USD).</li>
+        <ul>
+            <li>Scenario 1: Worst stock ≥ 80.00% → Receive full principal + final coupon.</li>
+            <li>Scenario 2: Worst stock < 80.00% → Receive shares of the worst-performing stock (number of shares = USD 46,000 ÷ final stock price in USD).</li>
+        </ul>
     </ul>
 
     <h2>Knock-In Risk</h2>
-    <ul>
-        <li>Knock-In Price Level: 55.00%</li>
-        <li>Knock-In Type: European</li>
-    </ul>
+    <table>
+        <tr>
+            <th>Knock-In Price Level</th>
+            <td>55.00%</td>
+        </tr>
+        <tr>
+            <th>Knock-In Type</th>
+            <td>European</td>
+        </tr>
+    </table>
 
     <h2>Key Risks</h2>
     <ul>
@@ -118,67 +165,61 @@
 
     <h2>Example Scenarios</h2>
 
-    <div class="example">
-        <h3>Knock-Out in October 2025</h3>
-        <p>Scenario: SNAP UN Equity hits 88% on September 25, 2025, and MRVL UW Equity hits 88% on October 5, 2025 → Note terminates on October 5, 2025.</p>
-        <p>Payout: USD 46,000 + 2 coupons (USD 925.42).</p>
-        <pre>
+    <h3>1. Knock-Out in October 2025:</h3>
+    <p>Scenario: Stock 1 hits 88.00% on September 15, and Stock 2 hits 88.00% on October 2 → Note terminates October 2.</p>
+    <p>Payout: USD 46,000 + 2 coupons (USD 925.42).</p>
+    <pre>
 Price Level (%)
-120 |                                                                 
-110 |                                                                 
-100 |                                                                 
- 90 |--- SNAP ----*               * (Knock-Out at 88%)              
- 80 |      \      / \                                               
- 70 |       \    /   \                                              
- 60 |        \  /     \                                             
- 50 |         \/       \                                            
- 40 |                   \                                           
- 30 |                    \                                          
- 20 |                     \                                         
- 10 |                      \                                        
-  0 |-------------------------------------------------------------- 
-     0  1m  2m  3m  4m  5m  6m  (Time in Months)
-     |          | (Knock-Out Event)                                 
---- MRVL (dips then recovers to 88% in 3m)
-Knock-Out Level: 88% (dashed line at 88%)
-Strike Level: 80% (not triggered)
-        </pre>
-    </div>
+120 |                                                                  
+110 |                                                                  
+100 |                                                                  
+ 90 |                                                                  
+ 88 |--- SNAP ----*---------* (Knock-Out at 88%)                      
+ 80 |     \    /      /                                                 
+ 70 |      \  /      /                                                  
+ 60 |       \/      /                                                   
+ 50 |              /                                                    
+ 40 |             /                                                     
+ 30 |            /                                                      
+ 20 |           /                                                       
+ 10 |          /                                                        
+  0 |--------/---------------------------------------------------------- 
+     0  1m  2m  3m  4m  5m  6m
+     |          | (Knock-Out Event)                                     
+--- MRVL (dips then recovers to 88% at 2m)
+    </pre>
 
-    <div class="example">
-        <h3>Maturity with Shares</h3>
-        <p>Scenario: MRVL UW Equity drops to USD 60.00 (72.54% of initial) by February 9, 2026, below 80.00% strike. SNAP UN Equity ends at 85%.</p>
-        <p>Payout: 766 MRVL shares (USD 46,000 ÷ USD 60.00).</p>
-        <pre>
+    <h3>2. Maturity with Shares:</h3>
+    <p>Scenario: MRVL drops to USD 40.00 (48.35% of initial) by February 9, 2026, below the 80.00% strike. SNAP ends at 85.00%.</p>
+    <p>Payout: 575 shares of MRVL (USD 46,000 ÷ USD 40.00).</p>
+    <pre>
 Price Level (%)
 120 |                                                                  
 110 |                                                                  
 100 |                                                                  
  90 |                                                                  
  80 |                                                                  
- 70 |--- MRVL --------------------------------------------------------- 
- 60 |    \                                                             
- 50 |     \----------------------------------------------------------- (ends at 72.54%)
- 40 |      \                                                           
- 30 |       \                                                          
- 20 |        \                                                         
- 10 |         \                                                        
-  0 |          \------------------------------------------------------- 
-     0  1m  2m  3m  4m  5m  6m  (Time in Months)
-     |                                                      | (Maturity)
---- SNAP (declines to 72.54% at 6m, below Strike 80%)
-Knock-Out Level: 88% (not triggered)
-Strike Level: 80% (dashed line, triggered for MRVL)
-        </pre>
-    </div>
+ 70 |                                                                  
+ 60 |                                                                  
+ 50 |                                                                  
+ 40 |--- MRVL --------------------------------------------------------- (ends at 48.35%)
+ 30 |                                                                  
+ 20 |                                                                  
+ 10 |                                                                  
+  0 |------------------------------------------------------------------ 
+     0  1m  2m  3m  4m  5m  6m
+     |                                                          | (Maturity)
+--- SNAP (declines below Strike 80%)
+    </pre>
 
     <h2>Additional Notes</h2>
     <ul>
-        <li>Valuation Dates: Monthly on 7th or 8th</li>
-        <li>Knock-In: The European knock-in type indicates that the knock-in level is only assessed at maturity.</li>
+        <li>Valuation Dates: Monthly on 8th or 9th</li>
+        <li>Knock-In: European type indicates risk only at maturity if price falls below 55.00%.</li>
     </ul>
 
-    <p>This FCN offers regular income with principal protection unless the worst-performing stock falls significantly by maturity. Early termination is possible if all underlyings recover to knock-out levels.</p>
+    <p>This FCN offers regular income with principal protection unless the worst-performing stock falls significantly by maturity. Early termination is possible if all underlyings recover to initial levels.</p>
+
 </body>
 </html>
 ```
