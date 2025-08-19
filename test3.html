@@ -8,31 +8,45 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
             margin: 20px;
         }
-        h1, h2, h3 {
-            color: #003366;
+        h1, h2 {
+            color: #2E86C1;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
         th, td {
-            border: 1px solid #cccccc;
             padding: 8px;
             text-align: left;
         }
         th {
             background-color: #f2f2f2;
         }
-        .note {
-            color: #555555;
-            font-size: 0.9em;
+        .example {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        .chart {
+            font-family: monospace;
+            white-space: pre;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
+
     <h1>Fixed Coupon Note (FCN) Product Specification</h1>
 
     <h2>Issuer Details</h2>
@@ -43,40 +57,26 @@
     <p><strong>Minimum Investment (Denomination):</strong> USD 46,000</p>
 
     <h2>Key Terms</h2>
-    <table>
-        <tr>
-            <th>Term</th>
-            <th>Details</th>
-        </tr>
-        <tr>
-            <td>Tenor</td>
-            <td>6 months</td>
-        </tr>
-        <tr>
-            <td>Trade Date</td>
-            <td>July 31, 2025</td>
-        </tr>
-        <tr>
-            <td>Issue Date</td>
-            <td>August 7, 2025</td>
-        </tr>
-        <tr>
-            <td>Final Valuation Date</td>
-            <td>February 9, 2026</td>
-        </tr>
-    </table>
+    <ul>
+        <li><strong>Tenor:</strong> 6 months</li>
+        <li><strong>Trade Date:</strong> July 31, 2025</li>
+        <li><strong>Issue Date:</strong> August 7, 2025</li>
+        <li><strong>Final Valuation Date:</strong> February 9, 2026</li>
+    </ul>
 
     <h2>Underlying Stocks</h2>
-    <p>The note’s performance is linked to the worst-performing of the following stocks:</p>
+    <p>The note’s performance is linked to the worst-performing of:</p>
     <ul>
         <li>SNAP UN Equity: Initial price = USD 9.4800</li>
         <li>MRVL UW Equity: Initial price = USD 82.7100</li>
     </ul>
 
     <h2>Coupon Payments</h2>
-    <p><strong>Annual Interest Rate:</strong> 12.07%</p>
-    <p><strong>Periodic Coupon Rate:</strong> 1.0059% (paid in USD)</p>
-    <p><strong>Coupon Payment Dates:</strong></p>
+    <ul>
+        <li><strong>Annual Interest Rate:</strong> 12.07%</li>
+        <li><strong>Periodic Coupon Rate:</strong> 1.0059% (paid in USD)</li>
+    </ul>
+    <h3>Coupon Payment Dates:</h3>
     <ul>
         <li>September 10, 2025</li>
         <li>October 9, 2025</li>
@@ -85,36 +85,44 @@
         <li>January 9, 2026</li>
         <li>February 11, 2026</li>
     </ul>
-    <p>Example: For USD 46,000 invested, each coupon = USD 462.71</p>
+    <div class="example">
+        <p><strong>Example:</strong> For USD 46,000 invested, each coupon = USD 462.71</p>
+    </div>
 
     <h2>Knock-Out Feature (Early Termination)</h2>
-    <p><strong>Knock-Out Price Level:</strong> 88% of initial prices</p>
-    <p><strong>Observation:</strong> Period End</p>
-    <p><strong>Memory Effect:</strong> Enabled</p>
+    <ul>
+        <li><strong>Knock-Out Price Level:</strong> 88% of initial prices</li>
+        <li><strong>Observation:</strong> Period End</li>
+        <li><strong>Memory Effect:</strong> Enabled</li>
+    </ul>
     <p><strong>Outcome:</strong> If triggered, receive principal (USD 46,000) + accrued coupons.</p>
 
     <h2>Maturity Payout Conditions</h2>
-    <p>If no knock-out occurs, on February 9, 2026, the payout depends on whether a Knock-In event occurred:</p>
+    <p>If no knock-out occurs:</p>
     <ul>
-        <li>No Knock-In Event: Receive full principal (USD 46,000) + final coupon, regardless of the worst-performing stock’s price.</li>
-        <li>Knock-In Event Occurred (European: a stock is below 55% on the final valuation date):
+        <li>On February 9, 2026, the payout depends on whether a Knock-In event occurred:</li>
+        <ul>
+            <li><strong>No Knock-In Event:</strong> Receive full principal (USD 46,000) + final coupon, regardless of the worst-performing stock’s price.</li>
+            <li><strong>Knock-In Event Occurred (European: a stock is below 55% on February 9, 2026):</strong></li>
             <ul>
                 <li>Scenario 1: Worst-performing stock ≥ 80% → Receive full principal + final coupon.</li>
                 <li>Scenario 2: Worst-performing stock < 80% → Receive shares of the worst-performing stock (number of shares = USD 46,000 ÷ final stock price in USD).</li>
             </ul>
-        </li>
+        </ul>
     </ul>
 
     <h2>Knock-In Risk</h2>
-    <p><strong>Knock-In Price Level:</strong> 55.00%</p>
-    <p><strong>Knock-In Type:</strong> European</p>
-    <p class="note">Note: For European, a knock-in event must occur if the worst-performing stock is below the knock-in price level on the final valuation date.</p>
+    <ul>
+        <li><strong>Knock-In Price Level:</strong> 55.00%</li>
+        <li><strong>Knock-In Type:</strong> European</li>
+    </ul>
+    <p>Note: If no knock-in risk exists, ensuring principal is returned in cash. For European knock-in, a knock-in event must occur for shares to be delivered at maturity, and only if the worst-performing stock is below the strike price.</p>
 
     <h2>Key Risks</h2>
     <ul>
         <li><strong>Market Risk:</strong> If a Knock-In event occurs and the worst-performing stock is below 80% at maturity, you may receive shares worth less than your principal.</li>
         <li><strong>Early Termination Risk:</strong> Knock-out may limit total interest earned.</li>
-        <li><strong>Knock-In Risk:</strong> With European, a knock-in can occur only at maturity. If not triggered, principal is returned in cash.</li>
+        <li><strong>Knock-In Risk:</strong> European knock-in means a knock-in can occur only at maturity.</li>
         <li><strong>Currency Risk:</strong> Exchange rate fluctuations may affect share value if delivered.</li>
         <li><strong>Issuer Risk:</strong> Barclays' creditworthiness impacts repayment.</li>
     </ul>
@@ -122,43 +130,57 @@
     <h2>Example Scenarios</h2>
 
     <h3>Knock-Out in October 2025:</h3>
-    <p>Scenario: Stock 1 (SNAP UN Equity) hits 88% on October 7, and Stock 2 (MRVL UW Equity) also reaches 88% on the same date, triggering a knock-out at the period end.</p>
-    <p><strong>Payout:</strong> USD 46,000 + 2 coupons (USD 925.42).</p>
-    <pre>
+    <p>Stock 1 (SNAP UN Equity) reaches 88% on October 7, 2025.</p>
+    <p>Stock 2 (MRVL UW Equity) reaches 88% on October 7, 2025.</p>
+    <p>Note terminates on October 7, 2025.</p>
+    <div class="example">
+        <p><strong>Payout:</strong> USD 46,000 + 2 coupons (USD 925.42).</p>
+    </div>
+
+    <div class="chart">
+<pre>
 Price Level (%)
 120 |                                                                  
 110 |                                                                  
-100 |                                                             
- 90 |--- [SNAP UN Equity] ----*-----* (Knock-Out at 88%)                 
- 80 |     \    /      /                                                
- 70 |      \  /      /                                                 
- 60 |       \/      / ([Strike Level = 80%])                                
- 50 |              / ([Knock-In Level = 55%])                
- 40 |             /                                                  
- 30 |            /                                                   
- 20 |           /                                                    
- 10 |          /                                                     
-  0 |--------/---------------------------------------------------------- 
-     0  1m  2m  3m  4m  5m  6m (Time in Months)
-     | (Knock-Out Event)                                     
---- [MRVL UW Equity] (reaches 88% at 2 months)
-Knock-Out Level: 88% (dashed line at 88%)
+100 |                                                                  
+ 90 |                                                                  
+ 88 |--- [SNAP] -----* (Knock-Out at 88%)                     
+ 80 |     \    /  
+ 70 |      \  /         
+ 60 |       \/                                                     
+ 50 |                                                                  
+ 40 |                                                                  
+ 30 |                                                                  
+ 20 |                                                                  
+ 10 |                                                                  
+  0 |------------------------------------------------------------------- 
+     0   1m  2m  3m  4m  5m  6m (Time in Months)
+     |     |  (Knock-Out Event)                                     
+--- [MRVL] (reaches 88% at 2 months, same as SNAP)
+Knock-Out Level: 88% (dashed line at 88)
 Knock-In Level: 55% (not triggered)
 Strike Level: 80% (not triggered)
-    </pre>
+</pre>
+    </div>
 
     <h3>Maturity with Shares (Knock-In Event):</h3>
-    <p>Scenario: Stock 2 (MRVL UW Equity) falls below 55% at the final valuation date, triggering a Knock-In event. At maturity, Stock 2 is at 50%, below the strike level.</p>
-    <p><strong>Payout:</strong> (USD 46,000 ÷ final stock price).</p>
-    <pre>
+    <p>MRVL UW Equity falls below 55% on February 9, 2026, triggering a Knock-In event.</p>
+    <p>At February 9, 2026, MRVL UW Equity is at 50% of initial, below 80%.</p>
+    <p>SNAP UN Equity ends at 85%.</p>
+    <div class="example">
+        <p><strong>Payout:</strong> [920] MRVL UW Equity shares (USD 46,000 ÷ final price).</p>
+    </div>
+
+    <div class="chart">
+<pre>
 Price Level (%)
 120 |                                                                  
 110 |                                                                  
-100 |--- [SNAP UN Equity] ----------------------------------------------        
+100 |--- [SNAP] ----------------------------------------------        
  90 |     \                                                           
- 80 |      \--------------------------------------------- (ends at 80%) 
- 70 |       \ ([Strike Level = 80%])                                        
- 60 |        \ ([Knock-In Level = 55%]) K (Knock-In Event)                  
+ 80 |      \---------------------------------------------- (ends at 85%) 
+ 70 |       \ ([Strike Level])                                        
+ 60 |        \ ([Knock-In Level]) K (Knock-In Event)                  
  50 |         \                                                      
  40 |          \                                                     
  30 |           \                                                    
@@ -167,18 +189,20 @@ Price Level (%)
   0 |--------------\----------------------------------------------- 
      0  1m  2m  3m  4m  5m  6m (Time in Months)
      |                   | (Maturity)                                  
---- [MRVL UW Equity] (falls to 55% at 6 months, ends at 50% below strike)
+--- [MRVL] (falls to 55% at 6 months, ends at 50% below 80%)
 Knock-Out Level: 88% (not triggered)
 Knock-In Level: 55% (triggered)
-Strike Level: 80% (triggered for MRVL UW Equity)
-    </pre>
+Strike Level: 80% (triggered for MRVL)
+</pre>
+    </div>
 
     <h2>Additional Notes</h2>
     <ul>
-        <li><strong>Valuation Dates:</strong> Monthly on 7th or 8th</li>
-        <li><strong>Knock-In:</strong> European mechanism applies, affecting only the final valuation date.</li>
+        <li>Valuation Dates: Monthly on the 8th or 9th</li>
+        <li>Knock-In: European knock-in occurs only if conditions are met at maturity.</li>
     </ul>
     <p>This FCN offers regular income with principal protection unless a Knock-In event occurs and the worst-performing stock falls significantly below the strike price by maturity. Early termination is possible if all underlyings recover to initial levels.</p>
+
 </body>
 </html>
 ```
