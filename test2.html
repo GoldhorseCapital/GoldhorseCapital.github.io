@@ -1,0 +1,148 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Coupon Note (FCN) Product Specification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1 { color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .chart { font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Fixed Coupon Note (FCN) Product Specification</h1>
+    <p><strong>Issuer:</strong> Barclays</p>
+    <p><strong>ISIN:</strong> XS3078776609</p>
+    <p><strong>Currency:</strong> USD (United States Dollar)</p>
+    <p><strong>Total Issue Size:</strong> USD 460,000</p>
+    <p><strong>Minimum Investment (Denomination):</strong> USD 46,000</p>
+
+    <h2>Key Terms</h2>
+    <ul>
+        <li><strong>Tenor:</strong> 6 months</li>
+        <li><strong>Trade Date:</strong> July 31, 2025</li>
+        <li><strong>Issue Date:</strong> August 7, 2025</li>
+        <li><strong>Final Valuation Date:</strong> February 9, 2026</li>
+    </ul>
+
+    <h2>Underlying Stocks</h2>
+    <p>The note’s performance is linked to the worst-performing of:</p>
+    <ul>
+        <li>SNAP UN Equity: Initial price = USD 9.48</li>
+        <li>MRVL UW Equity: Initial price = USD 82.71</li>
+    </ul>
+
+    <h2>Coupon Payments</h2>
+    <ul>
+        <li><strong>Annual Interest Rate:</strong> 12.07%</li>
+        <li><strong>Periodic Coupon Rate:</strong> 1.0059% (paid in USD)</li>
+        <li><strong>Coupon Payment Dates:</strong>
+            <ul>
+                <li>September 10, 2025</li>
+                <li>October 9, 2025</li>
+                <li>November 12, 2025</li>
+                <li>December 10, 2025</li>
+                <li>January 9, 2026</li>
+                <li>February 11, 2026</li>
+            </ul>
+        </li>
+    </ul>
+    <p><em>Example:</em> For USD 46,000 invested, each coupon = USD 462.71</p>
+
+    <h2>Knock-Out Feature (Early Termination)</h2>
+    <ul>
+        <li><strong>Knock-Out Price Level:</strong> 88% of initial prices</li>
+        <li><strong>Observation:</strong> Daily</li>
+        <li><strong>Memory Effect:</strong> Enabled</li>
+        <li><strong>Outcome:</strong> If triggered, receive principal (USD 46,000) + accrued coupons.</li>
+    </ul>
+
+    <h2>Maturity Payout Conditions</h2>
+    <p>If no knock-out occurs:</p>
+    <ul>
+        <li>On February 9, 2026, the worst-performing stock’s price is compared to:
+            <ul>
+                <li><strong>Strike Price Level:</strong> 80%</li>
+                <li><strong>Scenario 1:</strong> Worst stock ≥ 80% → Receive full principal + final coupon.</li>
+                <li><strong>Scenario 2:</strong> Worst stock < 80% → Receive shares of the worst-performing stock (number of shares = USD 46,000 ÷ final stock price in USD).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Knock-In Risk</h2>
+    <ul>
+        <li><strong>Knock-In Price Level:</strong> 55%</li>
+        <li><strong>Knock-In Type:</strong> European</li>
+    </ul>
+
+    <h2>Key Risks</h2>
+    <ul>
+        <li><strong>Market Risk:</strong> If the worst-performing stock falls below 80% at maturity, you may receive shares worth less than your principal.</li>
+        <li><strong>Early Termination Risk:</strong> Knock-out may limit total interest earned.</li>
+        <li><strong>Currency Risk:</strong> Exchange rate fluctuations may affect share value if delivered.</li>
+        <li><strong>Issuer Risk:</strong> Barclays' creditworthiness impacts repayment.</li>
+    </ul>
+
+    <h2>Example Scenarios</h2>
+
+    <h3>Knock-Out in October 2025</h3>
+    <p><strong>Scenario:</strong> SNAP hits 88% on September 15, MRVL hits 88% on October 2 → Note terminates October 2.</p>
+    <p><strong>Payout:</strong> USD 46,000 + 2 coupons (USD 925.42).</p>
+    <pre class="chart">
+Price Level (%)
+120 |                                                                  
+110 |                                                                  
+100 |--- SNAP -------------*---------* (Knock-Out at 88%)              
+ 90 |      \    / \                                                 
+ 80 |       \/   \  \                                                  
+ 70 |             \  \                                                 
+ 60 |              \  \                                                
+ 50 |               \  \                                               
+ 40 |                \  \                                              
+ 30 |                 \  \                                             
+ 20 |                  \  \                                            
+ 10 |                   \  \                                           
+  0 |--------------------\--------------------------------------------- 
+     0  1m  2m  3m  4m  5m  6m  7m  8m  9m 10m 11m 12m (Time in Months)
+     |      (Knock-Out Event)                                     
+--- MRVL (dips then recovers to 88% at 2m)
+Knock-Out Level: 88% (dashed line at 88)
+    </pre>
+
+    <h3>Maturity with Shares</h3>
+    <p><strong>Scenario:</strong> MRVL drops to USD 65.00 (78.59% of initial) by February 9, 2026, below 80% strike. SNAP ends at 85%.</p>
+    <p><strong>Payout:</strong> 706 MRVL shares (USD 46,000 ÷ USD 65.00).</p>
+    <pre class="chart">
+Price Level (%)
+120 |                                                                  
+110 |                                                                  
+100 |--- SNAP --------------------------------------------------------- 
+ 90 |    \                                                             
+ 80 |     \------------------------------------------------------------ (ends at 85%)
+ 70 |      \                                                           
+ 60 |       \                                                          
+ 50 |        \                                                         
+ 40 |         \                                                        
+ 30 |          \                                                       
+ 20 |           \                                                      
+ 10 |            \                                                     
+  0 |             \---------------------------------------------------- 
+     0  1m  2m  3m  4m  5m  6m  7m  8m  9m 10m 11m 12m (Time in Months)
+     |                                                          | (Maturity)
+--- MRVL (declines to 78.59% at 12m, below Strike 80%)
+    </pre>
+
+    <h2>Additional Notes</h2>
+    <ul>
+        <li><strong>Valuation Dates:</strong> Monthly on 8th or 9th</li>
+        <li><strong>Knock-In:</strong> European, only at final valuation date</li>
+    </ul>
+    <p>This FCN offers regular income with principal protection unless the worst-performing stock falls significantly by maturity. Early termination is possible if all underlyings recover to initial levels.</p>
+</body>
+</html>
+```
