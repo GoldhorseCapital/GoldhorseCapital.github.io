@@ -8,198 +8,226 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
         }
-        h1, h2, h3, p {
-            margin: 0;
-            padding: 0.5em 0;
+        h1, h2, h3 {
+            color: #333;
         }
-        .section {
-            margin-bottom: 2em;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
-        .example-scenarios {
-            font-family: monospace;
-            white-space: pre;
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .example {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
     <h1>Fixed Coupon Note (FCN) Product Specification</h1>
 
-    <div class="section">
-        <h2>Issuer</h2>
-        <p>Citic CLSA</p>
-    </div>
+    <h2>Issuer Information</h2>
+    <table>
+        <tr>
+            <th>Issuer</th>
+            <td>CITI</td>
+        </tr>
+        <tr>
+            <th>ISIN</th>
+            <td>XS3106604856</td>
+        </tr>
+        <tr>
+            <th>Currency</th>
+            <td>USD (US Dollar)</td>
+        </tr>
+        <tr>
+            <th>Total Issue Size</th>
+            <td>USD 250,000</td>
+        </tr>
+        <tr>
+            <th>Minimum Investment (Denomination)</th>
+            <td>USD 250,000</td>
+        </tr>
+    </table>
 
-    <div class="section">
-        <h2>ISIN</h2>
-        <p>XS3130703286</p>
-    </div>
+    <h2>Key Terms</h2>
+    <table>
+        <tr>
+            <th>Tenor</th>
+            <td>3 months</td>
+        </tr>
+        <tr>
+            <th>Trade Date</th>
+            <td>July 8, 2025</td>
+        </tr>
+        <tr>
+            <th>Issue Date</th>
+            <td>July 15, 2025</td>
+        </tr>
+        <tr>
+            <th>Final Valuation Date</th>
+            <td>October 15, 2025</td>
+        </tr>
+    </table>
 
-    <div class="section">
-        <h2>Currency</h2>
-        <p>USD (United States Dollar)</p>
-    </div>
+    <h2>Underlying Stocks</h2>
+    <p>The note’s performance is linked to:</p>
+    <ul>
+        <li>TSLA UW Equity: Initial price = USD 297.00</li>
+    </ul>
 
-    <div class="section">
-        <h2>Total Issue Size</h2>
-        <p>USD 100,000</p>
-    </div>
-
-    <div class="section">
-        <h2>Minimum Investment (Denomination)</h2>
-        <p>USD 100,000</p>
-    </div>
-
-    <div class="section">
-        <h2>Key Terms</h2>
-        <ul>
-            <li>Tenor: 6 months</li>
-            <li>Trade Date: July 24, 2025</li>
-            <li>Issue Date: August 7, 2025</li>
-            <li>Final Valuation Date: February 9, 2026</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Underlying Stocks</h2>
-        <p>The note’s performance is linked to the worst-performing of:</p>
-        <ul>
-            <li>GOOGL UW Equity: Initial price = USD 196.86</li>
-            <li>PLTR UW Equity: Initial price = USD 154.6357</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Coupon Payments</h2>
-        <ul>
-            <li>Annual Interest Rate: 20.00%</li>
-            <li>Periodic Coupon Rate: 1.6667% (paid in USD)</li>
-            <li>Coupon Payment Dates:
+    <h2>Coupon Payments</h2>
+    <table>
+        <tr>
+            <th>Annual Interest Rate</th>
+            <td>16.11%</td>
+        </tr>
+        <tr>
+            <th>Periodic Coupon Rate</th>
+            <td>1.3425% (paid in USD)</td>
+        </tr>
+        <tr>
+            <th>Coupon Payment Dates</th>
+            <td>
                 <ul>
-                    <li>September 10, 2025</li>
-                    <li>October 9, 2025</li>
-                    <li>November 12, 2025</li>
-                    <li>December 10, 2025</li>
-                    <li>January 9, 2026</li>
-                    <li>February 11, 2026</li>
+                    <li>August 19, 2025</li>
+                    <li>September 17, 2025</li>
+                    <li>October 17, 2025</li>
                 </ul>
-            </li>
-            <li>Example: For USD 100,000 invested, each coupon = USD 1,666.70</li>
-        </ul>
-    </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Example</th>
+            <td>For USD 250,000 invested, each coupon = USD 3,356.25</td>
+        </tr>
+    </table>
 
-    <div class="section">
-        <h2>Knock-Out Feature (Early Termination)</h2>
+    <h2>Knock-Out Feature (Early Termination)</h2>
+    <table>
+        <tr>
+            <th>Knock-Out Price Level</th>
+            <td>100% of initial prices</td>
+        </tr>
+        <tr>
+            <th>Observation</th>
+            <td>Period End</td>
+        </tr>
+        <tr>
+            <th>Memory Effect</th>
+            <td>Disabled (False)</td>
+        </tr>
+        <tr>
+            <th>Outcome</th>
+            <td>If triggered, receive principal (USD 250,000) + accrued coupons.</td>
+        </tr>
+    </table>
+
+    <h2>Maturity Payout Conditions</h2>
+    <p>If no knock-out occurs:</p>
+    <ul>
+        <li>On October 15, 2025, the payout depends on whether a Knock-In event occurred:</li>
         <ul>
-            <li>Knock-Out Price Level: 100% of initial prices</li>
-            <li>Observation: Period End</li>
-            <li>Memory Effect: Not enabled (False)</li>
-            <li>Outcome: If triggered, receive principal (USD 100,000) + accrued coupons.</li>
+            <li>No Knock-In Event: Receive full principal (USD 250,000) + final coupon, regardless of the stock’s price.</li>
         </ul>
-    </div>
+    </ul>
 
-    <div class="section">
-        <h2>Maturity Payout Conditions</h2>
-        <p>If no knock-out occurs:</p>
-        <ul>
-            <li>On February 9, 2026, the payout depends on whether a Knock-In event occurred:
-                <ul>
-                    <li>No Knock-In Event: Receive full principal (USD 100,000) + final coupon, regardless of the worst-performing stock’s price.</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <h2>Knock-In Risk</h2>
+    <table>
+        <tr>
+            <th>Knock-In Price Level</th>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <th>Knock-In Type</th>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <th>Note</th>
+            <td>No knock-in risk exists, ensuring principal is returned in cash.</td>
+        </tr>
+    </table>
 
-    <div class="section">
-        <h2>Knock-In Risk</h2>
-        <ul>
-            <li>Knock-In Price Level: N/A</li>
-            <li>Knock-In Type: N/A</li>
-            <li>Note: No knock-in risk exists, ensuring principal is returned in cash.</li>
-        </ul>
-    </div>
+    <h2>Key Risks</h2>
+    <ul>
+        <li>Market Risk: No knock-in risk means principal is protected unless other conditions apply.</li>
+        <li>Early Termination Risk: Knock-out may limit total interest earned.</li>
+        <li>Currency Risk: Exchange rate fluctuations may affect share value if delivered.</li>
+        <li>Issuer Risk: CITI’s creditworthiness impacts repayment.</li>
+    </ul>
 
-    <div class="section">
-        <h2>Key Risks</h2>
-        <ul>
-            <li>Market Risk: If a Knock-In event occurs and (for AKI) the worst-performing stock is below 75.32% at maturity, you may receive shares worth less than your principal.</li>
-            <li>Early Termination Risk: Knock-out may limit total interest earned.</li>
-            <li>Knock-In Risk: With AKI, a knock-in can occur anytime; for EKI, only at maturity if the worst-performing stock is below the knock-in level. If "N/A," no knock-in risk.</li>
-            <li>Currency Risk: Exchange rate fluctuations may affect share value if delivered.</li>
-            <li>Issuer Risk: Citic CLSA’s creditworthiness impacts repayment.</li>
-        </ul>
-    </div>
+    <h2>Example Scenarios</h2>
 
-    <div class="section example-scenarios">
-        <h2>Example Scenarios</h2>
-
-        <h3>Knock-Out in October 2025:</h3>
-        <p>Scenario: Stock 1 (GOOGL) hits 100% at the end of September, Stock 2 (PLTR) hits 100% at the end of October, leading to early termination in October.</p>
-        <p>Payout: USD 100,000 + 2 coupons (USD 3,333.40).</p>
-
+    <div class="example">
+        <h3>1. Knock-Out in September 2025:</h3>
+        <p>Scenario: Stock TSLA reaches 100% of initial price at the period end in September, triggering a knock-out.</p>
+        <p>Payout: USD 250,000 + 2 coupons (USD 6,712.50).</p>
         <pre>
 Price Level (%)
 120 |                                                                  
 110 |                                                                  
-100 |--- [GOOGL] ------------------*---------------------------------  
- 90 |     \    /      /                                               
- 80 |      \  /      /                                                
- 70 |       \/      / ([Strike Level])                                
- 60 |              / ([Knock-In Level, if applicable])                
+100 |--- [TSLA] -------* (Knock-Out at 100%)                 
+ 90 |     \    /      /                                                
+ 80 |      \  /      /                                                 
+ 70 |       \/      /                                              
+ 60 |              /                                               
  50 |             /                                                  
- 40 |            /                                                   
- 30 |           /                                                    
- 20 |          /                                                     
- 10 |         /                                                      
-  0 |--------/---------------------------------------------------------- 
-     0  1m  2m  3m  4m  5m  6m (Time in Months)
-     |          * (Knock-Out Event)                                     
-=== [PLTR] (recovers to 100% at 3 months)
-Knock-Out Level: 100% (dashed line at 100)
-Knock-In Level: N/A (not applicable)
-Strike Level: 75.32% (not applicable)
+ 40 |            /                                                    
+ 30 |           /                                                     
+ 20 |          /                                                      
+ 10 |         /                                                       
+  0 |--------/------------------------------------------------------- 
+    0  1m  2m  3m (Time in Months)
+    |     | (Knock-Out Event)                                      
         </pre>
+    </div>
 
-        <h3>Maturity with Principal Return:</h3>
-        <p>Scenario: Knock-Out does not occur. Both stocks remain below 100% throughout the observation periods but there is no Knock-In risk.</p>
-        <p>Payout: USD 100,000 + 6 coupons (USD 10,000.20).</p>
-
+    <div class="example">
+        <h3>2. Maturity with Full Principal Return:</h3>
+        <p>Scenario: Stock TSLA does not reach 100% at any observation point; note matures without early termination.</p>
+        <p>Payout: USD 250,000 + 3 coupons (USD 10,068.75).</p>
         <pre>
 Price Level (%)
 120 |                                                                  
 110 |                                                                  
-100 |--- [GOOGL] ---------------------------------------------        
+100 |--- [TSLA] ----------------------------------------------        
  90 |     \                                                           
- 80 |      \---------------------------------------------- (ends at 80%) 
- 70 |       \ ([Strike Level])                                        
- 60 |        \ ([Knock-In Level])                                    
- 50 |         \                                                      
- 40 |          \                                                     
- 30 |           \                                                    
- 20 |            \                                                   
- 10 |             \                                                  
-  0 |--------------\----------------------------------------------- 
-     0  1m  2m  3m  4m  5m  6m (Time in Months)
-     |                   | (Maturity)                                  
-=== [PLTR] (remains below 100% throughout)
-Knock-Out Level: 100% (not triggered)
-Knock-In Level: N/A (not applicable)
-Strike Level: 75.32% (not triggered)
+ 80 |      \----------------------------------------------            
+ 70 |       \                                                       
+ 60 |        \                                                     
+ 50 |         \                                                    
+ 40 |          \                                                  
+ 30 |           \                                                 
+ 20 |            \                                                
+ 10 |             \                                               
+  0 |--------------\--------------------------------------------- 
+    0  1m  2m  3m (Time in Months)
+    |        | (Maturity)                                      
         </pre>
     </div>
 
-    <div class="section">
-        <h2>Additional Notes</h2>
-        <ul>
-            <li>Valuation Dates: Monthly on the 7th or 8th</li>
-            <li>Knock-In: No knock-in risk as it is marked "N/A."</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Final Note for Students</h2>
-        <p>The JSON provided to you is the contract detailing how the FCN works. Extract each value carefully and use it to populate the specification template above. Ensure accuracy, as each FCN has unique terms (e.g., different issuers, dates, or rates). Double-check calculations (e.g., coupon amounts) and read the full terms beyond the JSON for any additional conditions. For the graphs, create simple ASCII representations using the format shown, with distinct line patterns (--- for [GOOGL], === for [PLTR]), smooth price paths (/, \), clear event markers (* for knock-out), and labeled levels (Knock-Out, Strike). Adjust the paths and labels to match your scenarios, reflecting the absence of Knock-In events and no EKI logic in this case.</p>
-    </div>
+    <h2>Additional Notes</h2>
+    <ul>
+        <li>Valuation Dates: Monthly on 15th</li>
+        <li>Knock-In: No knock-in risk; principal is returned in cash.</li>
+        <li>This FCN offers regular income with principal protection unless other conditions apply. Early termination is possible if the underlying reaches the initial levels, as defined by the Knock-Out feature.</li>
+    </ul>
 </body>
 </html>
 ```
